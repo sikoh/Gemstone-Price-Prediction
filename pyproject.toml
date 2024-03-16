@@ -5,7 +5,11 @@ description = "Default template for PDM package"
 authors = [
     {name = "Silvana K", email = "silvanakoharian@gmail.com"},
 ]
-dependencies = []
+dependencies = [
+    "pandas>=2.2.1",
+    "seaborn>=0.13.2",
+    "scikit-learn>=1.4.1.post1",
+]
 requires-python = "==3.12.*"
 readme = "README.md"
 license = {text = "MIT"}
@@ -13,3 +17,8 @@ license = {text = "MIT"}
 
 [tool.pdm]
 distribution = false
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "jupyter>=1.0.0",
+]
