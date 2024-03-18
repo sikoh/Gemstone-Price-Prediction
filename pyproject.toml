@@ -9,6 +9,8 @@ dependencies = [
     "pandas>=2.2.1",
     "seaborn>=0.13.2",
     "scikit-learn>=1.4.1.post1",
+    "catboost>=1.2.3",
+    "xgboost>=2.0.3",
 ]
 requires-python = "==3.12.*"
 readme = "README.md"
