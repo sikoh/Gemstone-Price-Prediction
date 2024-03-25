@@ -21,20 +21,32 @@ def save_object(file_path, obj):
         raise CustomException(e,sys)
     
 
-    def evaluate_models(Xtrain, ytrain, Xtest, ytest, models):
-        try:
-            report = {}
-            for model_name, model in models.items():
-                # Train model
-                model.fit(Xtrain, ytrain)
+def evaluate_models(Xtrain, ytrain, Xtest, ytest, models):
+    try:
+        report = {}
+        for model_name, model in models.items():
+            # Train model
+            model.fit(Xtrain, ytrain)
 
-                # Predict Testing data
-                y_test_pred = model.predict(Xtest)
+            # Predict Testing data
+            y_test_pred = model.predict(Xtest)
 
-                # Get R2 score for test data
-                test_model_score = r2_score(ytest, y_test_pred)
-                report[model_name] = test_model_score
+            # Get R2 score for test data
+            test_model_score = r2_score(ytest, y_test_pred)
+            report[model_name] = test_model_score
 
-        except Exception as e:
-            logging.info('Exception occured during model training')
-            raise CustomException(e,sys)
+    except Exception as e:
+        logging.info('Exception occured during model training')
+        raise CustomException(e,sys)
+        
+
+def model_metrics(true, predicted):
+    try :
+        mae = mean_absolute_error(true, predicted)
+        mse = mean_squared_error(true, predicted)
+        rmse = np.sqrt(mse)
+        r2_square = r2_score(true, predicted)
+        return mae, rmse, r2_square
+    except Exception as e:
+        logging.info('Exception Occured while evaluating metric')
+        raise CustomException(e,sys)
